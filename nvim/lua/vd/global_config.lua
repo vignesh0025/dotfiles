@@ -68,9 +68,56 @@ local airline_init = function ()
 end
 
 local telescope_init = function ()
+
+    local previewers = require('telescope.previewers')
+    local icons = require'nvim-web-devicons'
+    local new_maker = function(filepath, bufnr, opts)
+        opts = opts or {}
+
+        filepath = vim.fn.expand(filepath)
+        local height = vim.api.nvim_win_get_height(opts.winid)
+        vim.loop.fs_stat(filepath, function(err, stat)
+            if stat.type == "directory" then
+                vim.loop.fs_scandir(filepath, function(err, dir)
+                    local ls = {}
+                    local highlights = {}
+
+                    local data = vim.loop.fs_scandir_next(dir)
+                    local i = 1
+                    while data ~= nil  do
+                        local abspath = filepath..data
+                        local stat = vim.loop.fs_stat(abspath)
+                        if stat.type == "directory" then
+                            icon,hl = "","DevIconDefault"
+                        else
+                            icon, hl = icons.get_icon(abspath, string.match(abspath, "%a+$"),
+                                {default=true})
+                        end
+                        table.insert(ls, (icon or "").." "..data)
+                        table.insert(highlights, hl)
+                        data = vim.loop.fs_scandir_next(dir)
+                        if i == height then
+                            break
+                        end
+                        i = i + 1
+                    end
+                    vim.schedule(function()
+                        vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, ls)
+                        for i,ihl in ipairs(highlights) do
+                            vim.api.nvim_buf_add_highlight(bufnr, -1, ihl, i-1, 1, 3)
+                        end
+                    end)
+                end)
+            else
+                previewers.buffer_previewer_maker(filepath, bufnr, opts)
+            end
+        end)
+    end
+
     require('telescope').setup{
         -- see :help telescope.setup()
         defaults = {
+            buffer_previewer_maker = new_maker,
             mappings = {
                 i = {
                     ["<Esc>"] = require('telescope.actions').close
