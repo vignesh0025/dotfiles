@@ -1,0 +1,31 @@
+{
+    "python.pythonPath": "$VIRTUAL_ENV/bin/python",
+    //  This is done inside .vimrc to use an environment variable
+    "clangd.checkUpdates": true,
+    "clangd.arguments": [
+        "-header-insertion=never"
+    ],
+    "clangd.semanticHighlighting": true,
+    "snippets.enableStatusItem": true,
+    "snippets.userSnippetsDirectory": "~/.config/nvim/ultisnips",
+    "snippets.ultisnips.directories": [
+        "ultisnips",
+        "vim-snippets/UltiSnips"
+    ],
+    "coc.source.tmuxcomplete.priority":11,
+    "coc.source.ultisnips.shortcut": "UltiSnips",
+    "coc.source.around.shortcut": "Around",
+    "coc.source.buffer.shortcut": "Buffer",
+    "coc.source.file.shortcut": "File",
+    "snippets.shortcut": "Snippets",
+    "suggest.echodocSupport": true,
+    "diagnostic.displayByAle": true,
+    "sumneko-lua.enableNvimLuaDev": true,
+    "languageserver": {
+        "svls": {
+            "command": "svls",
+            "filetypes": ["systemverilog"]
+        }
+    },
+    "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/13.0.0/clangd_13.0.0/bin/clangd"
+}

@@ -1,0 +1,75 @@
+# A valid snippet should starts with:
+#
+#		snippet trigger_word [ "description" [ options ] ]
+#
+# and end with:
+#
+#		endsnippet
+#
+# Snippet options:
+#
+#		b - Beginning of line.
+#		i - In-word expansion.
+#		w - Word boundary.
+#		r - Regular expression
+#		e - Custom context snippet
+#		A - Snippet will be triggered automatically, when condition matches.
+#
+# Basic example:
+#
+#		snippet emitter "emitter properties" b
+#		private readonly ${1} = new Emitter<$2>()
+#		public readonly ${1/^_(.*)/$1/}: Event<$2> = this.$1.event
+#		endsnippet
+#
+# Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
+
+snippet cmake_llvm "Use LLVM in place of GCC" b
+
+SET (CMAKE_C_COMPILER             "/usr/bin/clang")
+SET (CMAKE_C_FLAGS                "-Wall -std=c99")
+SET (CMAKE_C_FLAGS_DEBUG          "-g")
+SET (CMAKE_C_FLAGS_MINSIZEREL     "-Os -DNDEBUG")
+SET (CMAKE_C_FLAGS_RELEASE        "-O4 -DNDEBUG")
+SET (CMAKE_C_FLAGS_RELWITHDEBINFO "-O2 -g")
+
+endsnippet
+
+snippet cmake_llvm+ "Use LLVM in place of G++" b
+
+SET (CMAKE_CXX_COMPILER             "/usr/bin/clang++")
+SET (CMAKE_CXX_FLAGS                "-Wall")
+SET (CMAKE_CXX_FLAGS_DEBUG          "-g")
+SET (CMAKE_CXX_FLAGS_MINSIZEREL     "-Os -DNDEBUG")
+SET (CMAKE_CXX_FLAGS_RELEASE        "-O4 -DNDEBUG")
+SET (CMAKE_CXX_FLAGS_RELWITHDEBINFO "-O2 -g")
+
+endsnippet
+
+snippet cmake_ld "Use LLVM in place of ld" b
+
+SET (CMAKE_AR      "/usr/bin/llvm-ar-10")
+SET (CMAKE_LINKER  "/usr/bin/llvm-link-10")
+SET (CMAKE_NM      "/usr/bin/llvm-nm-10")
+SET (CMAKE_OBJDUMP "/usr/bin/llvm-objdump-10")
+SET (CMAKE_RANLIB  "/usr/bin/llvm-ranlib-10")
+
+endsnippet
+
+snippet cmake_cppxx "Use CPP standardxx" b
+SET(CMAKE_CXX_STANDARD ${1})
+endsnippet
+
+snippet cmake_debug_type "Include cmake Debug/Release" b
+SET(CMAKE_BUILD_TYPE ${1})
+endsnippet
+
+snippet cmake_compile_commands "Export compile commands" b
+SET(CMAKE_EXPORT_COMPILE_COMMANDS ON )
+endsnippet
+
+snippet cmake_source_dir "Specify source file directory" b
+SET(source_dir "${PROJECT_SOURCE_DIR}/src/")
+file (GLOB source_files "${source_dir}/*.cpp")
+// add_executable(HelloWorld ${source_files})
+endsnippet

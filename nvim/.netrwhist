@@ -1,0 +1,9 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =7
+let g:netrw_dirhist_7='/home/vignesh/ConfigFiles/plugins/FuzzyOpen'
+let g:netrw_dirhist_6='/home/vignesh/Data/CPP/VimProjectBootstrapper/inc'
+let g:netrw_dirhist_5='/home/vignesh/ConfigFiles/plugins/ColorChange'
+let g:netrw_dirhist_4='/home/vignesh/ConfigFiles/plugins/TestPlugins/autoload/TestPlugin'
+let g:netrw_dirhist_3='/home/vignesh/ConfigFiles/plugins/TestPlugins/autoload'
+let g:netrw_dirhist_2='/home/vignesh/ConfigFiles/plugins/TestPlugins'
+let g:netrw_dirhist_1='/tmp/.mount_nvimzYntRT/usr/share/nvim/runtime/doc'
