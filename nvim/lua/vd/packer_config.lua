@@ -24,37 +24,60 @@ return require('packer').startup(function(use)
   use 'github/copilot.vim'
   use 'puremourning/vimspector'
   use 'caenrique/nvim-toggle-terminal'
-  use 'rust-lang/rust.vim'
-  use 'chiphogg/vim-prototxt'
-  use 'lervag/vimtex'
-  use 'lifepillar/vim-cheat40'
+
+  -- use 'rust-lang/rust.vim'
+  -- use 'chiphogg/vim-prototxt'
+  -- use 'lervag/vimtex'
+  -- use 'majutsushi/tagbar'
+
+  use 'lifepillar/vim-cheat40' -- :TagbarToggle
+
+  use 'wellle/targets.vim' -- Nice Plugin to add more selection
+
+  -- use 'luochen1990/rainbow' -- :RainboxToggle
+
   use 'christoomey/vim-tmux-runner'
-  use 'majutsushi/tagbar'
-  use 'szw/vim-maximizer'
-  use 'sbdchd/neoformat'
-  use 'wellle/targets.vim'
-  use 'psliwka/vim-smoothie'
   use 'wellle/tmux-complete.vim'
-  use 'luochen1990/rainbow'
   use 'tmux-plugins/vim-tmux-focus-events'
+
+  use 'szw/vim-maximizer'
+  use 'sbdchd/neoformat' -- :Neoformat
+  use 'psliwka/vim-smoothie' -- Smooth Scrolling
   use 'cdelledonne/vim-cmake'
-  use 'haya14busa/incsearch.vim'
+
+  use {'haya14busa/incsearch.vim', config=function ()
+    vim.cmd[[
+    set hlsearch
+    let g:incsearch#auto_nohlsearch = 1
+    map n  <Plug>(incsearch-nohl-n)
+    map N  <Plug>(incsearch-nohl-N)
+    map *  <Plug>(incsearch-nohl-*)
+    map #  <Plug>(incsearch-nohl-#)
+    map g* <Plug>(incsearch-nohl-g*)
+    map g# <Plug>(incsearch-nohl-g#
+    ]]
+  end}
+
   use 'RRethy/nvim-base16' -- Includes treesitter support
   use 'sainnhe/gruvbox-material'
   use 'shaunsingh/nord.nvim'
-  use {'dracula/vim', { as = 'dracula' }} -- as -> install in dracula folder
+  use {'dracula/vim', as = 'dracula' } -- as -> install in dracula folder
   use 'NLKNguyen/papercolor-theme'
   use 'ayu-theme/ayu-vim'
   use 'whatyouhide/vim-gotham'
   use 'nanotech/jellybeans.vim'
+
+  use 'unblevable/quick-scope' -- Highlight first letter to use t/T/f/F
+
   use 'fedorenchik/qt-support.vim'
-  use 'unblevable/quick-scope'
   use 'christoomey/vim-tmux-navigator'
   use 'tmux-plugins/vim-tmux'
   use 'peterhoeg/vim-qml'
   use 'artoj/qmake-syntax-vim'
   use 'chiel92/vim-autoformat'
-  use 'nvie/vim-flake8' -- pip install flake8 and <F7> key to check py file
+  use 'nvie/vim-flake8'
+
+  -- pip install flake8 and <F7> key to check py file
   -- use {'junegunn/fzf', { run = './install --all' }}
   -- use 'junegunn/fzf.vim'
   -- use 'jremmen/vim-ripgrep'

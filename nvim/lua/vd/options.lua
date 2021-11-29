@@ -2,6 +2,8 @@ local global_options = function ()
     if(vim.opt.compatible) then
         vim.opt.compatible        = false
     end
+    vim.opt.listchars             = 'eol:↵,trail:~,tab:▷ ,nbsp:␣,extends:◣,precedes:◢'
+    vim.opt.list                  = true
     vim.opt.colorcolumn           = "96"
     vim.opt.termguicolors         = true
     vim.opt.guifont               = "Droid Sans Mono:h20"

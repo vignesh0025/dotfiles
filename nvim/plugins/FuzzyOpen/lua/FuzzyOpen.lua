@@ -6,8 +6,8 @@ local windows = nil
 local current_highlighted_line = nil
 
 local init = function ()
-    print("Count: "..no)
-    no = no + 1
+    print("Count: "..No)
+    No = No + 1
 end
 
 local highlight_line_buf = function(line_no)

@@ -33,17 +33,6 @@ EOF
         autocmd BufWritePost *vd/*.lua source <afile> | PackerCompile
     augroup end
 
-    " lua  require('config')
-    " Use <Tab> and <S-Tab> to navigate through popup menu
-    if g:use_lsp == v:true
-        " let g:completion_enable_auto_popup = 0
-        " let g:completion_enable_snippet = 'UltiSnips'
-        " inoremap <expr> <Tab>   pumvisible() ? "<C-n>" : "<Tab>"
-        " inoremap <expr> <S-Tab> pumvisible() ? "<C-p>" : "<S-Tab>"
-        " imap <silent> <c-space> <Plug>(completion_trigger)
-        " set completeopt=menuone,noinsert,noselect
-        " set shortmess+=c
-    endif
 endif
 
 " DISABLED : Leader {{{
@@ -290,7 +279,7 @@ nnoremap <Leader>0 :10b<CR>
 " nmap <silent> ]l <Plug>(ale_next_wrap)
 " }}}
 
-" vim-plug {{{
+" DISABLED: vim-plug {{{
 call plug#begin()
 
 " Plug 'github/copilot.vim'

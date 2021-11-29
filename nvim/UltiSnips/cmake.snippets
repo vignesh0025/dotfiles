@@ -25,14 +25,17 @@
 # Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
 #
 snippet vd_cmake_boost "Include Requirements for boost" b
-
 set(BOOST_ROOT ../Boost/Release)
 find_package(Boost 1.75 REQUIRED system filesystem log thread COMPONENTS)
-
 target_include_directories(${1} PUBLIC \${Boost_INCLUDE_DIR})
-# This will automatically add libraries based  on the Find_package COMPONENTS
 target_link_libraries(${1} PUBLIC \${Boost_LIBRARIES})
+endsnippet
 
+snippet vd "Include Requirements for boost" b
+set(BOOST_ROOT ../Boost/Release)
+find_package(Boost 1.75 REQUIRED system filesystem log thread COMPONENTS)
+target_include_directories(${1} PUBLIC \${Boost_INCLUDE_DIR})
+target_link_libraries(${1} PUBLIC \${Boost_LIBRARIES})
 endsnippet
 
 snippet vd_cmake_basics "Basic Cmake commands we use" b
@@ -47,6 +50,12 @@ TARGET_INCLUDE_DIRECTORIES(${PROJECT_NAME} PUBLIC ../LuaLib/include)
 TARGET_LINK_DIRECTORIES(${PROJECT_NAME} PUBLIC ../LuaLib)
 TARGET_LINK_LIBRARIES(${PROJECT_NAME} PUBLIC liblua5.1.a)
 TARGET_LINK_LIBRARIES(${PROJECT_NAME} PUBLIC dl)
+endsnippet
+
+snippet vd_cmake_luajit "Include requirements for LuaJit Embedded" b
+TARGET_INCLUDE_DIRECTORIES(${PROJECT_NAME} PUBLIC ../Lua/LuaJIT-2.0.5/Release/include/luajit-2.0)
+TARGET_LINK_DIRECTORIES(${PROJECT_NAME} PUBLIC ../Lua/LuaJIT-2.0.5/Release/lib)
+TARGET_LINK_LIBRARIES(${PROJECT_NAME} PUBLIC libluajit-5.1.a)
 endsnippet
 
 snippet vd_cmake_head "Description" b

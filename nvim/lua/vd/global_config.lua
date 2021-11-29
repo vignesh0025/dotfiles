@@ -185,9 +185,20 @@ local lsp_server_init = function ()
             --   print(vim.inspect(client.resolved_capabilities))
         end
 
+        _G.lsp_show_documentation = function ()
+            if vim.fn.index({"vim", "help", "lua"}, vim.o.filetype) >= 0 then
+                local cmd = ":h "..vim.fn.expand('<cword>')
+                vim.cmd(cmd)
+            elseif vim.o.filetype == "tex" then
+                vim.cmd("VimtexDocPackage")
+            else
+                vim.cmd[[:lua vim.lsp.buf.hover()]]
+            end
+        end
+
+        buf_set_keymap("n", "K", ":call v:lua.lsp_show_documentation()<cr>", opts)
         buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
         buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-        buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
         buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
         buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
         buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
