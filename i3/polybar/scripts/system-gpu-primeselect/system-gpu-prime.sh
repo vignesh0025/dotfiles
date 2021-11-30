@@ -8,9 +8,10 @@ hybrid_switching=0
 
 
 gpu_current() {
-	mode=$(/usr/sbin/prime-select get-current)
+	mode=$(optimus-manager --print-mode)
 
-    echo "$mode" | head -n1 | cut -d ' ' -f 3
+    #echo "$mode" | head -n1 | cut -d ' ' -f 3
+    echo $mode | awk -F" " '{print $5}'
 }
 
 gpu_switch() {
@@ -35,6 +36,8 @@ gpu_display(){
     mode=$(gpu_current)
 
     if [ "$mode" = "intel" ]; then
+		echo "$icon_intel"
+    elif [ "$mode" = "integrated" ]; then
 		echo "$icon_intel"
 	elif [ "$mode" = "nvidia" ]; then
 		echo "$icon_nvidia"

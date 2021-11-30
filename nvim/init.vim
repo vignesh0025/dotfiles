@@ -11,7 +11,7 @@ if has('nvim-0.5.0')
 lua << EOF
 local ok, ret = pcall(require, 'plenary.reload')
 if not ok then
-  print("Planery Not Available"..ret)
+    print("Planery Not Available"..ret)
 else
     ret.reload_module("vd.", true)
 end
@@ -280,7 +280,7 @@ nnoremap <Leader>0 :10b<CR>
 " }}}
 
 " DISABLED: vim-plug {{{
-call plug#begin()
+" call plug#begin()
 
 " Plug 'github/copilot.vim'
 
@@ -338,7 +338,7 @@ call plug#begin()
 " Plug 'cdelledonne/vim-cmake'
 
 " Provides more features around / and ? and all
-Plug 'haya14busa/incsearch.vim'
+" Plug 'haya14busa/incsearch.vim'
 
 " Treesitter Themes
 " Plug 'RRethy/nvim-base16' " Includes treesitter support
@@ -457,7 +457,7 @@ Plug 'haya14busa/incsearch.vim'
 "   echom "No neovim nightly"
 " endif
 
-call plug#end()
+"call plug#end()
 " }}} vim-plug
 
 " LUADEV {{{

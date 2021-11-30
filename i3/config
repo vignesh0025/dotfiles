@@ -28,6 +28,8 @@ font pango:SauceCodePro Nerd Font Mono 12
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
 
+# Display Wallpaper, always.
+exec_always feh --bg-fill /usr/share/backgrounds/i3/wall.png
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
 
@@ -38,8 +40,9 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
-exec --no-startup-id blueman-applet
+exec --no-startup-id optimus-manager-qt
 exec --no-startup-id pasystray
+exec --no-startup-id blueman-applet 
 # exec --no-startup-id dunst -conf ~/.config/i3/dunstrc &
 
 # Use pactl to adjust volume in PulseAudio.
@@ -251,8 +254,6 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh --$theme
 #                         binding_mode       #FF5555 #FF5555 #F8F8F2
 #         }
 # }
-
-exec_always feh --bg-fill ~/Pictures/1182337.jpg
 
 assign [class="(?i)Alacritty"] → $ws1
 assign [class="(?i)google-chrome"] → $ws2

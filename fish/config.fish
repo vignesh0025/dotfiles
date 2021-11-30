@@ -21,9 +21,5 @@ function vivado_activate
     bass source /home/vignesh/Data/Xilinx/Vivado/2021.1/settings64.sh
 end
 
-set -x VIRTUALENVWRAPPER_PYTHON /usr/bin/python3
-set -x WORKON_HOME ~/Envs
-set -x QT_QPA_PLATFORMTHEME qt5ct
-set -x WINIT_X11_SCALE_FACTOR 1.1
-mkdir -p $WORKON_HOME
-bass source /usr/local/bin/virtualenvwrapper.sh
+# Disable the unncecessary welcome message we get at the start
+set fish_greeting
