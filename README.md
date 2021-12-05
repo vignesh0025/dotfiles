@@ -49,3 +49,9 @@ sudo nvim /etc/X11/xorg.conf.d/40-libinput.conf
     - Install tensorflow-gpu
     - Freeze Package `IgnorePkg   = nvidia cuda cudnn opencl-nvidia` in `/etc/pacman.conf`
     - Tadaa!
+
+## Laptop Lid and suspend button
+
+    - In `/etc/systemd/logind.conf`, enable the following:
+        - HandleSuspendKey=suspend
+        - HandleLidSwitch=suspend
