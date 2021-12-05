@@ -30,3 +30,12 @@ sudo nvim /etc/X11/xorg.conf.d/40-libinput.conf
 ```
     - In 40-libinput, add *MatchIsTouchpad "on"* to *touchpad catchall* setion
     - logout and login
+
+## NVidia Drivers
+
+    - Install "nvidia" and "bbswitch" from pacman
+    - Install optimus-manager and optimus-manager-qt from yay
+    - Using optimus-manager-qt settings, switch mode to offload and boot also to offload
+    - Select bbswitch as NVidia turn off method
+    - Select `Course` as the switching method
+    - Use arandr to enable the second monitor (Even in offload moad lol)
