@@ -2,7 +2,7 @@ env:
   WINIT_X11_SCALE_FACTOR: "1.2"
 
 font:
-  size: 13
+  size: 12
 
   normal:
     family: SauceCodePro Nerd Font Mono
@@ -75,8 +75,8 @@ window:
   decorations: full
   dynamic_title: true
   gtk_theme_variant: dark
+  opacity: 0.9
 
-background_opacity: 0.9
 live_config_reload: true
 
 # Want to add a binding (e.g. "PageUp") but are unsure what the X sequence

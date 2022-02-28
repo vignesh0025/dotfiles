@@ -6,7 +6,10 @@ augroup END
 " }}}
 
 let g:use_lsp = v:true
-if has('nvim-0.5.0')
+
+lua << EOF
+--vim.lsp.set_log_level("debug")
+EOF
 
 lua << EOF
 local ok, ret = pcall(require, 'plenary.reload')
@@ -23,17 +26,16 @@ end
     -- end
 EOF
 
-    lua require('vd.options').global_options()
-    lua require('vd.autocmds').global_autocmds()
-    lua require('vd.keymaps').global_keymaps()
-    lua require('vd.packer_config')
+lua require('vd.options').global_options()
+lua require('vd.autocmds').global_autocmds()
+lua require('vd.keymaps').global_keymaps()
+lua require('vd.packer_config')
 
-    augroup packer_user_config
-        autocmd!
-        autocmd BufWritePost *vd/*.lua source <afile> | PackerCompile
-    augroup end
+augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost *vd/*.lua source <afile> | PackerCompile
+augroup end
 
-endif
 
 " DISABLED : Leader {{{
 " let mapleader=","   " leader is comma

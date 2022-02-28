@@ -14,13 +14,19 @@ end
 -- vim.cmd [[packadd packer.nvim]]
 
 
-return require('packer').startup(function(use)
+return require('packer').startup({function(use)
+
+  -- use {'lewis6991/impatient.nvim', config = function ()
+    -- require('impatient')
+  -- end}
+
+  -- require('packer_compiled')
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
   use 'dstein64/vim-startuptime'
 
-  use 'jremmen/vim-ripgrep'
+  use {'jremmen/vim-ripgrep', disable=true}
   use 'github/copilot.vim'
   use 'puremourning/vimspector'
   use 'caenrique/nvim-toggle-terminal'
@@ -87,13 +93,13 @@ return require('packer').startup(function(use)
   use {'nvim-telescope/telescope.nvim',
     config = global_config.telescope_init,
     requires = {
-      {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}
+      {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'},
+      {'nvim-telescope/telescope-file-browser.nvim'}
     }
   }
 
-  use {'sheerun/vim-polyglot', config=global_config.polyglot_init}
+  use {'sheerun/vim-polyglot',disable=true, config=global_config.polyglot_init}
   use {'nvim-treesitter/nvim-treesitter',
-    branch="0.5-compat",
     run = ':TSUpdate',
     config = global_config.treesitter_init,
   }
@@ -133,7 +139,7 @@ return require('packer').startup(function(use)
   end
   }
   use {'kdheepak/tabline.nvim', after="lualine.nvim", config=function ()
-      require'tabline'.setup({
+    require'tabline'.setup({
       options = {show_bufnr = true}
     })
   end}
@@ -206,12 +212,13 @@ return require('packer').startup(function(use)
       "hrsh7th/cmp-buffer",
       "onsails/lspkind-nvim",
       "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-nvim-lua",
       "hrsh7th/cmp-cmdline",
       "hrsh7th/cmp-path",
       {"SirVer/ultisnips", config=global_config.ultisnips_init},
       "honza/vim-snippets",
       "quangnguyen30192/cmp-nvim-ultisnips"
-  }}
+    }}
   -- use {'nvim-lua/completion-nvim', disable=not(vim.g.use_lsp)}
   -- use {'prabirshrestha/vim-lsp', disable=not(vim.g.use_lsp)}
   -- use {'mattn/vim-lsp-settings', disable=not(vim.g.use_lsp)}
@@ -228,4 +235,11 @@ return require('packer').startup(function(use)
   end}
 
   use 'MunifTanjim/nui.nvim'
-end)
+
+  use {'Pocco81/TrueZen.nvim', config = function ()
+    local true_zen = require("true-zen")
+    true_zen.setup()
+  end}
+
+  -- use {'~/home/vignesh/dotfiles/nvim/plugins/NotesPlugin', disable=true}
+end})

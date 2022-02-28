@@ -77,8 +77,15 @@ local telescope_init = function ()
         filepath = vim.fn.expand(filepath)
         local height = vim.api.nvim_win_get_height(opts.winid)
         vim.loop.fs_stat(filepath, function(err, stat)
-            if stat.type == "directory" then
+            if err ~= nil then
+                print(err)
+            elseif stat.type == "directory" then
                 vim.loop.fs_scandir(filepath, function(err, dir)
+                    if err ~= nil then
+                        print(err)
+                        return
+                    end
+
                     local ls = {}
                     local highlights = {}
 
@@ -137,6 +144,7 @@ local telescope_init = function ()
     require('vd.keymaps').telescope_keymaps()
     require('vd.autocmds').telescope_autocmds()
 
+    require("telescope").load_extension "file_browser"
     -- require('telescope').load_extension('fzf')
 end
 
@@ -169,7 +177,7 @@ local lsp_server_init = function ()
 
     require('vd.autocmds').lsp_autocmds()
 
-    -- On Attach Function
+    -- On Attach Function {{{
     local on_attach = function(client, bufnr)
         local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
         local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
@@ -238,6 +246,7 @@ local lsp_server_init = function ()
             ]]
         end
     end
+    --- }}}
 
     -- Setup lspconfig.
     local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
@@ -258,6 +267,7 @@ local lsp_server_init = function ()
                 }
             })
         elseif server.name == "sumneko_lua" then
+            -- print(vim.inspect(server))
             opts = vim.tbl_extend("force", opts, {
                 on_attach = on_attach,
                 capabilities=capabilities,
@@ -444,6 +454,7 @@ local nvim_cmp_init = function ()
         },
         mapping = require("vd.keymaps").nvim_cmp_keymaps(cmp),
         sources = cmp.config.sources({
+            { name = 'nvim_lua' },
             { name = 'nvim_lsp' },
             { name = 'ultisnips' }, -- For ultisnips users.
         }, {

@@ -48,10 +48,11 @@ end
 local telescope_keymaps = function ()
     vim.api.nvim_set_keymap("n", "<C-p>", "<cmd>lua require('telescope.builtin').find_files()<cr>", {noremap = true});
     vim.api.nvim_set_keymap("n", "<M-p>", "<cmd>lua require('telescope.builtin').buffers()<cr>", {noremap = true});
+    vim.api.nvim_set_keymap("n", "gR", "<cmd>lua require('telescope.builtin').grep_string()<cr>", {noremap = true});
     vim.api.nvim_set_keymap("n", "<leader>ev",[[<cmd>lua require'telescope.builtin'.fd{cwd="~/.config/nvim/", search_dirs = {".", "lua"}}<CR>]], {noremap=true})
     -- vim.api.nvim_set_keymap("n", "<leader>ev",[[<cmd>lua require'telescope.builtin'.find_files{cwd="~/.config/nvim/", search_dirs = {".", "lua"}}<CR>]], {noremap=true})
 
-    vim.api.nvim_set_keymap("n","<C-n>",[[<cmd>lua require('telescope.builtin').file_browser()<CR>]],{noremap=true})
+    vim.api.nvim_set_keymap("n","<C-n>",[[:Telescope file_browser<CR>]],{noremap=true})
     vim.api.nvim_set_keymap("n","<F1>",[[<cmd>lua require('telescope.builtin').help_tags()<CR>]],{noremap=true})
 
     vim.api.nvim_set_keymap("n","<F7>",[[<cmd>lua require('telescope.builtin').keymaps()<CR>]],{noremap=true})
