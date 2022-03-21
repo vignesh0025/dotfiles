@@ -72,6 +72,7 @@ return require('packer').startup({function(use)
   use 'ayu-theme/ayu-vim'
   use 'whatyouhide/vim-gotham'
   use 'nanotech/jellybeans.vim'
+  use {'mhartington/oceanic-next'}
 
   use 'unblevable/quick-scope' -- Highlight first letter to use t/T/f/F
 
@@ -134,16 +135,21 @@ return require('packer').startup({function(use)
       config.sections.lualine_x = vim.list_extend({_G.get_current_lang_server},config.sections.lualine_x)
     end
     require'lualine'.setup(vim.tbl_deep_extend("force",config, {
-      options = {theme = 'solarized_dark'},
+      options = {theme = 'solarized_dark',
+        global_status=true,
+        section_separators = { left = '', right = '' },
+        component_separators = { left = '', right = '' }
+      },
     }))
   end
   }
+
   use {'kdheepak/tabline.nvim', after="lualine.nvim", config=function ()
     require'tabline'.setup({
       options = {show_bufnr = true}
     })
   end}
-  --
+
   use {'kyazdani42/nvim-tree.lua',
     setup = function ()
       vim.g.nvim_tree_highlight_opened_files = 1

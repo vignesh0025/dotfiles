@@ -1,1 +1,129 @@
-/home/vignesh/.config/i3/dunstrc
+[global]
+    font = FiraCode Nerd Font 11
+
+    # The format of the message. Possible variables are:
+    #   %a  appname
+    #   %s  summary
+    #   %b  body
+    #   %i  iconname (including its path)
+    #   %I  iconname (without its path)
+    #   %p  progress value if set ([  0%] to [100%]) or nothing
+    # Markup is allowed
+    format = "<b>%a %s</b>\n%b\n%p"
+
+    # Sort messages by urgency
+    sort = yes
+
+    # Show how many messages are currently hidden (because of geometry)
+    indicate_hidden = yes
+
+    # Alignment of message text.
+    # Possible values are "left", "center" and "right"
+    alignment = center
+
+    # Show age of message if message is older than show_age_threshold seconds.
+    # set to -1 to disable
+    show_age_threshold = -1
+
+    # Split notifications into multiple lines if they don't fit into geometry
+    word_wrap = yes
+
+    # Ignore newlines '\n' in notifications
+    ignore_newline = no
+
+    # Frame
+    frame_width = 3
+    frame_color = "#131718"
+
+    # The transparency of the window. range: [0; 100]
+    # This option will only work if a compositing windowmanager is present (e.g. xcompmgr, compiz, etc..)
+    transparency = 0
+
+    # Don't remove messages, if the user is idle (no mouse or keyboard input)
+    # for longer than idle_threshold seconds.
+    # Set to 0 to disable.
+    idle_threshold = 0
+
+    # Which monitor should the notifications be displayed on.
+    monitor = 0
+
+    # Display notification on focused monitor. Possible modes are:
+    # mouse: follow mouse pointer
+    # keyboard: follow window with keyboard focus
+    # none: don't follow anything
+    #
+    # "keyboard" needs a windowmanager that exports the _NET_ACTIVE_WINDOW property.
+    # This should be the case for almost all modern windowmanagers.
+    #
+    # If this option is set to mouse or keyboard, the monitor option will be
+    # ignored.
+    follow = none
+
+    # Display indicators for URLs (U) and actions (A).
+    show_indicators = yes
+
+    # Should a notification popped up from history be sticky or
+    # timeout as if it would normally do.
+    sticky_history = yes
+
+    # The height of a single line. If the height is smaller than the font height,
+    # it will get raised to the font height.
+    # This adds empty space above and under the text.
+    line_height = 8
+
+    # Draw a line of 'separatpr_height' pixel height between two notifications.
+    # Set to 0 to disable
+    separator_height = 3
+
+    # Padding between text and separator
+    padding = 8
+
+    # Horizontal padding
+    horizontal_padding = 8
+
+    # Define a color for the separator.
+    # possible values are:
+    #  * auto: dunst tries to find a color fitting to the background
+    #  * foreground: use the same color as the foreground
+    #  * frame: use the same color as the frame.
+    #  * anything else will be interpreted as a X color
+    separator_color = frame
+
+    # Browser for opening urls in context menu
+    browser = /usr/bin/google-chrome-stable
+
+    icon_path = /usr/share/icons/Adwaita/16x16/status/:/usr/share/icons/Adwaita/16x16/devices/:/usr/share/icons/Adwaita/16x16/legacy/
+
+    # Align icons left/right/off
+    icon_position = left
+
+    # Scale larger icons down to this size, set to 0 to disable
+    max_icon_size = 64
+
+    # Define the corner radius of the notification window
+    # in pixel size. If the radius is 0, you have no rounded
+    # corners.
+    # The radius will be automatically lowered if it exceeds half of the
+    # notification height to avoid clipping text and/or icons.
+    corner_radius = 0
+
+[log_notifs]
+    script = ~/.config/dunst/scripts/lognotifs.sh
+
+[urgency_low]
+    background = "#0B0F10"
+    foreground = "#898c8d"
+    timeout = 5
+
+[urgency_normal]
+    background = "#0B0F10"
+    foreground = "#a7aaab"
+    timeout = 7
+
+[urgency_critical]
+    background = "#000000"
+    foreground = "#c61616"
+    frame_color = "#c61616"
+    timeout = 0
+
+; vim: ft=cfg

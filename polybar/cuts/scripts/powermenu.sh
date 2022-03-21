@@ -6,33 +6,36 @@
 ## Twitter : @adi1090x
 
 dir="~/.config/polybar/cuts/scripts/rofi"
-uptime=$(uptime -p | awk -F'[ ,]' '{print $7}')
+uptime=$(uptime -p | awk -F' ' '{print $2  $3  $4  $5}')
 
-rofi_command="rofi -theme $dir/powermenu.rasi"
+#rofi_command="rofi -theme $dir/powermenu.rasi"
+rofi_command="rofi "
 
 # Options
-shutdown=" Shutdown"
-reboot=" Restart"
-lock=" Lock"
-suspend=" Sleep"
-logout=" Logout"
-
+shutdown=" Shutdown"
+lock=" Lock"
+suspend="⏾ Sleep"
+logout=" Logout"
+reboot=" Restart"
+# ﰇ
 # Confirmation
 confirm_exit() {
 	rofi -dmenu\
 		-i\
 		-no-fixed-num-lines\
 		-p "Are You Sure? : "\
-		-theme $dir/confirm.rasi
+		-theme /usr/share/rofi/themes/android_notification.rasi
+		# -theme $dir/confirm.rasi
 }
 
 # Message
 msg() {
-	rofi -theme "$dir/message.rasi" -e "Available Options  -  yes / y / no / n"
+	#rofi -theme "$dir/message.rasi" -e "Available Options  -  yes / y / no / n"
+	rofi -theme /usr/share/rofi/themes/android_notification.rasi -e "Available Options  -  yes / y / no / n"
 }
 
 # Variable passed to rofi
-options="$lock\n$suspend\n$logout\n$reboot\n$shutdown"
+options="$lock\n$suspend\n$logout\n$shutdown\n$reboot"
 
 chosen="$(echo -e "$options" | $rofi_command -p "Uptime: $uptime" -dmenu -selected-row 0)"
 case $chosen in

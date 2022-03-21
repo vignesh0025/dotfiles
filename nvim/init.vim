@@ -988,7 +988,7 @@ if !exists('g:vscode')
     if has('win32')
         let g:python3_host_prog=expand('C:\Users\Vignesh\PY3\Scripts\python.exe')
     elseif empty($VIRTUAL_ENV)
-        let g:python3_host_prog='/usr/bin/python3'
+        let g:python3_host_prog='python3'
     else
         let g:python3_host_prog=expand('$VIRTUAL_ENV/bin/python')
     endif

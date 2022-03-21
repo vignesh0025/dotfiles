@@ -1,0 +1,65 @@
+#! /bin/sh
+
+pgrep -x sxhkd > /dev/null || sxhkd &
+pgrep -x nm-applet > /dev/null || nm-applet &
+pgrep -x pasystray > /dev/null || pasystray &
+pgrep -x blueman-applet > /dev/null || blueman-applet &
+pgrep -x flameshot > /dev/null || flameshot &
+pgrep -x picom > /dev/null || picom --config ~/.config/i3/picom.conf &
+pgrep -x dunst > /dev/null || dunst --config ~/.config/dunst/dunstrc &
+
+feh --bg-fill /home/vignesh/polybar-themes/wallpapers/bg_16.jpg
+$HOME/dotfiles/polybar/launch_new.sh --new
+
+WS1=Term
+WS2=Web
+WS3=Workspace
+WS4=Study
+WS5=Multimedia
+WS0=Config
+
+bspc monitor -d $WS1 $WS2 $WS3 $WS4 $WS5 6 7 8 9 $WS0
+
+bspc config border_width         2
+bspc config window_gap           8
+
+bspc config split_ratio          0.60
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+
+# We are giving instance name  ClassName:[InstanceName]:[Name]
+# bspc rule -a Gimp desktop='^8' state=floating follow=on
+# bspc rule -a mplayer2 state=floating
+# bspc rule -a Kupfer.py focus=on
+# bspc rule -a Screenkey manage=off
+screenwidth=1920
+screenheight=1200
+windowwidth=800
+windowheight=600
+windowx=$(python -c "print(int($screenwidth)//2-int($windowwidth)//2)")
+windowy=$(python -c "print(int($screenheight)//2-int($windowheight)//2)")
+
+bspc rule -a persepolis state=floating follow=on rectangle="$windowwidth"x"$windowheight"+"$windowx"+"$windowy"
+bspc rule -a Alacritty desktop='Term'
+bspc rule -a Google-chrome desktop='Web'
+bspc rule -a Vsim desktop='Workspace'
+bspc rule -a Vivado desktop='Workspace'
+bspc rule -a Evince desktop='Study'
+bspc rule -a Org.gnome.Nautilus desktop='Study'
+bspc rule -a Vlc desktop='Multimedia'
+bspc rule -a Arandr desktop='Config'
+bspc rule -a Blueman-manager desktop='Config'
+
+bspc rule -a CMakeSetup state=floating
+
+# Set urgent for new windows
+bspc subscribe node_add | while read -a msg; do
+    bspc query -D -d "${msg[2]}.!focused" > /dev/null \
+        && xdotool set_window --urgency 1 "${msg[4]}"
+done
+
+
+# Required for java applications to work
+wmname LG3D
+export _JAVA_AWT_WM_NONREPARENTING=1
+export EDITOR=nvim

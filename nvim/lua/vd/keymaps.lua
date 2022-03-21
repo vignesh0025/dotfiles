@@ -282,7 +282,7 @@ local nvim_cmp_keymaps = function (cmp)
                 if cmp.visible() then
                     -- if the current entered data doesn't match anything, move to items
                     cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
-                elseif vim.fn["UltiSnips#CanJumpForwards"]() == 1 then
+                elseif vim.fn["UltiSnips#CanJumpForwards"] ~= nil and vim.fn["UltiSnips#CanJumpForwards"]() == 1 then
                     vim.fn.feedkeys(t("<esc>:call UltiSnips#JumpForwards()<CR>"))
                 else
                     vim.fn.feedkeys(t("<tab>"), "n")
