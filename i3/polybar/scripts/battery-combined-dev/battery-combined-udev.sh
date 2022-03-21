@@ -11,6 +11,12 @@ battery_print() {
     PATH_BATTERY_0="/sys/class/power_supply/BAT0"
     PATH_BATTERY_1="/sys/class/power_supply/BAT1"
 
+    # Exit if no battery is found
+    if [ ! -f $PATH_AC ] && [ ! -f $PATH_BATTERY_0 ] && [ ! -f $PATH_BATTERY_1 ]; then
+        echo ""
+        exit
+    fi
+
     ac=0
     battery_level_0=0
     battery_level_1=0
@@ -103,6 +109,7 @@ case "$1" in
         fi
         ;;
     *)
+
         echo $$ > $path_pid
 
         trap exit INT

@@ -8,10 +8,15 @@ hybrid_switching=0
 
 
 gpu_current() {
-	mode=$(optimus-manager --print-mode)
+	if ! command -v optimus-manager &> /dev/null
+	then
+		echo "NO OPTIMUS"
+	else
+		mode=$(optimus-manager --print-mode)
+		echo $mode | awk -F" " '{print $5}'
+	fi
 
     #echo "$mode" | head -n1 | cut -d ' ' -f 3
-    echo $mode | awk -F" " '{print $5}'
 }
 
 gpu_switch() {
