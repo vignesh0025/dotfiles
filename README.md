@@ -33,12 +33,17 @@ sudo nvim /etc/X11/xorg.conf.d/40-libinput.conf
 
 ## NVidia Drivers
 
+### Laptop
     - Install "nvidia" and "bbswitch" from pacman
     - Install optimus-manager and optimus-manager-qt from yay
     - Using optimus-manager-qt settings, switch mode to offload and boot also to offload
     - Select bbswitch as NVidia turn off method
     - Select `Course` as the switching method
-    - Use arandr to enable the second monitor (Even in offload moad lol)
+    - Use arandr to enable the second monitor (Even in offload mode lol)
+
+### Desktop
+    - Install "nvidia" from pacman
+    - You are already done :-)
 
 ## Cuda
 
@@ -55,3 +60,20 @@ sudo nvim /etc/X11/xorg.conf.d/40-libinput.conf
     - In `/etc/systemd/logind.conf`, enable the following:
         - HandleSuspendKey=suspend
         - HandleLidSwitch=suspend
+
+## Brightness (Desktop)
+    - Install `ddcutil` from pacman/paru
+    - Run `sudo modprobe i2c-dev` as `Moniter Brightness` is in i2c bus
+    - Run `sudo ddcutil capabilities | grep "Feature: 10"`
+        - If we get `Feature: 10 (Brightness)`, we are able to access the i2c bus
+    - Run `ddcutil getvcp 10` to get current Brightness.
+    - If above is working, use `ddcutil setvcp 10 <brighness_val>` to set.
+
+    - To make this permanent:
+        - `echo "i2c-dev" > /etc/modules-load.d/i2c-dev.conf`
+        - Add `KERNEL=="i2c-[0-9]*", GROUP="i2c"` in `/etc/udev/rules.d/10-local_i2c_group.rules`
+        - `groupadd i2c`
+        - `usermod -aG i2c vignesh`
+        - Reboot
+        - Use ddcutil getvcp/setvcp to adjust brighness
+    - Polybar: TBD

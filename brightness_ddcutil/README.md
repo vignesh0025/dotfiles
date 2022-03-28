@@ -1,0 +1,2 @@
+- Copy to /etc/modules-load.d/i2c-dev.conf
+- Copy to /etc/udev/rules.d/10-local_i2c_group.rules
