@@ -19,7 +19,7 @@ super + shift + c
 	pkill -USR1 -x sxhkd; notify-send 'sxhkd' 'Reloaded config'
 
 super + Escape
-	~/.config/polybar/cuts/scripts/powermenu.sh
+	~/.config/polybar/scripts-menus/powermenu.sh
 
 XF86AudioRaiseVolume
 	pactl set-sink-volume @DEFAULT_SINK@ +10%

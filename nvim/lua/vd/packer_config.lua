@@ -24,6 +24,14 @@ return require('packer').startup({function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
+  use {
+    'goolord/alpha-nvim',
+    requires = { 'kyazdani42/nvim-web-devicons' },
+    config = function ()
+        require'alpha'.setup(require'alpha.themes.startify'.config)
+    end
+  }
+
   use 'dstein64/vim-startuptime'
 
   use {'jremmen/vim-ripgrep', disable=true}
@@ -168,7 +176,12 @@ return require('packer').startup({function(use)
   use {'itchyny/lightline.vim', disable=true}
   use {'vim-airline/vim-airline', disable=true, config = global_config.airline_init }
   use {'vim-airline/vim-airline-themes', after="vim-airline"}
-  use {'~/.config/nvim/plugins/ColorChange', after='lualine.nvim'}
+  use {'~/.config/nvim/plugins/ColorChange', after='lualine.nvim', config = function ()
+    vim.cmd [[
+    au ColorScheme * highlight Normal guibg=none
+    au ColorScheme * highlight NonText guibg=none
+    ]]
+  end}
   use 'tpope/vim-sleuth'
 
   use {'tpope/vim-fugitive',  config = global_config.fugitive_init}

@@ -29,7 +29,7 @@ font pango:SauceCodePro Nerd Font Mono 12
 #font pango:DejaVu Sans Mono 8
 
 # Display Wallpaper, always.
-exec_always feh --bg-fill /usr/share/backgrounds/i3/wall.png
+exec_always feh --bg-fill /home/vignesh/polybar-themes/wallpapers/bg_16.jpg
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
 
@@ -40,9 +40,10 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
-exec --no-startup-id optimus-manager-qt
+# exec --no-startup-id optimus-manager-qt
 exec --no-startup-id pasystray
-exec --no-startup-id blueman-applet 
+exec --no-startup-id blueman-applet
+exec --no-startup-id flameshot
 # exec --no-startup-id dunst -conf ~/.config/i3/dunstrc &
 
 # Use pactl to adjust volume in PulseAudio.
@@ -68,7 +69,7 @@ floating_modifier $mod
 # start a terminal
 # bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Return exec alacritty
-bindsym $mod+Shift+Return exec google-chrome
+bindsym $mod+Shift+Return exec google-chrome-stable
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -82,9 +83,6 @@ bindsym $mod+Shift+q kill
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
 set $theme cuts
 
-bindsym $mod+d exec --no-startup-id rofi -no-config -no-lazy-grab -show drun -modi drun -theme ~/.config/polybar/$theme/scripts/rofi/launcher.rasi
-bindsym $mod+Shift+d exec --no-startup-id rofi -no-config -show window -theme ~/.config/polybar/$theme/scripts/rofi/launcher.rasi
-bindsym $mod+Ctrl+d exec --no-startup-id rofi --no-config -show combi -combi-modi "file-browser" -theme ~/.config/polybar/$theme/scripts/rofi/launcher.rasi
 
 # change focus
 bindsym $mod+h focus left
@@ -138,16 +136,16 @@ bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
+set $ws1 "1:Term"
+set $ws2 "2:Web"
+set $ws3 "3:Workspace"
+set $ws4 "4:Study"
+set $ws5 "5:Multimedia"
 set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
-set $ws10 "10"
+set $ws10 "10:Settings"
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -237,7 +235,8 @@ client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
 
 client.background       #F8F8F2
 
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh --$theme
+exec_always --no-startup-id $HOME/.config/polybar/launch_new.sh --new
+exec_always --no-startup-id $HOME/.config/conky/start.sh
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 # bar {
@@ -260,6 +259,8 @@ assign [class="(?i)google-chrome"] → $ws2
 assign [class="(?i)vsim"] → $ws3
 assign [class="(?i)Vivado"] → $ws3
 assign [class="(?i)okular"] → $ws3
+assign [class="(?i)Org.gnome.Nautilus"] → $ws3
+assign [class="(?i)Evince"] → $ws4
 assign [class="(?i)vlc"] → $ws5
 assign [class="(?i)arandr"] → $ws9
 assign [class="(?i)blueman-manager"] → $ws9
@@ -275,8 +276,8 @@ smart_gaps inverse_outer
 
 #Needed for i3-gaps
 #hide_edge_borders both
-gaps inner 4
-gaps outer 4
+gaps inner 3
+gaps outer 3
 
 # Don't wrap around while navigating
 focus_wrapping no
@@ -297,4 +298,8 @@ bindsym Mod1+Shift+Tab focus left
 bindsym $mod+Tab workspace back_and_forth
 
 # Power Menu
-bindsym $mod+Escape exec ~/.config/polybar/cuts/scripts/powermenu.sh
+bindsym $mod+Shift+a exec --no-startup-id ~/.config/polybar/cuts/scripts/audio.sh
+bindsym $mod+Escape exec --no-startup-id ~/.config/polybar/cuts/scripts/powermenu.sh
+bindsym $mod+Shift+w exec --no-startup-id ~/.config/polybar/cuts/scripts/network.sh
+bindsym $mod+d exec --no-startup-id rofi -no-lazy-grab -show drun -modi drun -display-drun " "
+bindsym $mod+Shift+d exec --no-startup-id rofi -show window -display-window " "
