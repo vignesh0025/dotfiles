@@ -42,7 +42,8 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 exec --no-startup-id optimus-manager-qt
 exec --no-startup-id pasystray
-exec --no-startup-id blueman-applet 
+exec --no-startup-id blueman-applet
+exec --no-startup-id flameshot # SUPPPER NICE
 # exec --no-startup-id dunst -conf ~/.config/i3/dunstrc &
 
 # Use pactl to adjust volume in PulseAudio.
@@ -58,6 +59,7 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 bindsym XF86MonBrightnessUp exec ~/.config/i3/brightness.sh up
 bindsym XF86MonBrightnessDown exec ~/.config/i3/brightness.sh down
 
+bindsym --release Print exec scrot -s
 
 # Disable Mouse follow
 focus_follows_mouse no
@@ -68,7 +70,7 @@ floating_modifier $mod
 # start a terminal
 # bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Return exec alacritty
-bindsym $mod+Shift+Return exec google-chrome
+bindsym $mod+Shift+Return exec google-chrome-stable
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -153,7 +155,7 @@ set $ws10 "10"
 bindsym $mod+1 workspace number $ws1
 bindsym $mod+2 workspace number $ws2
 bindsym $mod+3 workspace number $ws3
-bindsym $mod+4 workspace number $ws4
+bindsym $mod+4 workspace number $ws4; layout tabbed
 bindsym $mod+5 workspace number $ws5
 bindsym $mod+6 workspace number $ws6
 bindsym $mod+7 workspace number $ws7
@@ -174,15 +176,15 @@ bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
 # Workspace config
-workspace $ws1 output HDMI-0 DP-2.8 eDP-1-1
-workspace $ws2 output HDMI-0 DP-2.8 eDP-1-1
-workspace $ws3 output HDMI-0 DP-2.8 eDP-1-1
-workspace $ws4 output HDMI-0 DP-2.8 eDP-1-1
-workspace $ws5 output HDMI-0 DP-2.8 eDP-1-1
-workspace $ws6 output HDMI-0 DP-2.8 eDP-1-1
-workspace $ws7 output HDMI-0 DP-2.8 eDP-1-1
-workspace $ws8 output HDMI-0 DP-2.8 eDP-1-1
-workspace $ws9 output HDMI-0 DP-2.8 eDP-1-1
+workspace $ws1 output HDMI-0 DP-2.8 eDP-1-1 DP-1-2.8
+workspace $ws2 output HDMI-0 DP-2.8 eDP-1-1 DP-1-2.8
+workspace $ws3 output HDMI-0 DP-2.8 eDP-1-1 DP-1-2.8
+workspace $ws4 output HDMI-0 DP-2.8 eDP-1-1 DP-1-2.8
+workspace $ws5 output HDMI-0 DP-2.8 eDP-1-1 DP-1-2.8
+workspace $ws6 output HDMI-0 DP-2.8 eDP-1-1 DP-1-2.8
+workspace $ws7 output HDMI-0 DP-2.8 eDP-1-1 DP-1-2.8
+workspace $ws8 output HDMI-0 DP-2.8 eDP-1-1 DP-1-2.8
+workspace $ws9 output HDMI-0 DP-2.8 eDP-1-1 DP-1-2.8
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -192,6 +194,7 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Do you really want to exit i3?' -B 'Yes, exit i3' 'i3-msg exit'"
 bindsym $mod+F1 exec "~/.screenlayout/single.sh"
 bindsym $mod+F2 exec "~/.screenlayout/dual.sh"
+bindsym $mod+F4 exec "~/.screenlayout/offload.sh"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -259,13 +262,18 @@ assign [class="(?i)Alacritty"] → $ws1
 assign [class="(?i)google-chrome"] → $ws2
 assign [class="(?i)vsim"] → $ws3
 assign [class="(?i)Vivado"] → $ws3
-assign [class="(?i)okular"] → $ws3
+assign [class="(?i)pcmanfm"] → $ws3
+
+assign [class="(?i)zathura"] → $ws4
+
 assign [class="(?i)vlc"] → $ws5
+assign [class="(?i)code"] → $ws5
+
 assign [class="(?i)arandr"] → $ws9
 assign [class="(?i)blueman-manager"] → $ws9
 
 for_window [class="plasma.emojier" instance="ibus-ui-emojier-plasma"] floating enable
-for_window [class="(?i)xterm" instance="(?i)xterm"] floating enable
+# for_window [class="(?i)xterm" instance="(?i)xterm"] floating enable
 for_window [class="(?i)CMakeSetup" instance="(?i)cmake-gui"] floating enable
 # Only enable gaps on a workspace when there is at least one container
 smart_gaps on

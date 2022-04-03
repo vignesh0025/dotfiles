@@ -3,11 +3,13 @@
 # omf install bass
 
 if status is-interactive
-    # Commands to run in interactive sessions can go here
 end
 
+status is-login; and pyenv init --path | source
+status is-interactive; and pyenv init - | source
+
 # Update Path
-set -x PATH $PATH $HOME/.local/bin
+set -x PATH $PATH $HOME/.local/bin /opt/intelFPGA/20.1/modelsim_ase/bin
 
 # set editor
 set -x EDITOR nvim
@@ -23,3 +25,4 @@ end
 
 # Disable the unncecessary welcome message we get at the start
 set fish_greeting
+

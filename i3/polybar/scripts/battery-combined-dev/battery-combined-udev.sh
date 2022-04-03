@@ -12,8 +12,8 @@ battery_print() {
     PATH_BATTERY_1="/sys/class/power_supply/BAT1"
 
     # Exit if no battery is found
-    if [ ! -f $PATH_AC ] && [ ! -f $PATH_BATTERY_0 ] && [ ! -f $PATH_BATTERY_1 ]; then
-        echo ""
+    if [ ! -d $PATH_AC ] && [ ! -d $PATH_BATTERY_0 ] && [ ! -d $PATH_BATTERY_1 ]; then
+        echo "No Battery"
         exit
     fi
 
@@ -50,7 +50,7 @@ battery_print() {
     battery_percent=$(("$battery_percent / $battery_max"))
 
     if [ "$ac" -eq 1 ]; then
-        icon=""
+        icon=" %{F#F0C674}%{F-}"
 
         close_dunstify
         if [ "$battery_percent" -gt 97 ]; then
@@ -60,18 +60,18 @@ battery_print() {
         fi
     else
         if [ "$battery_percent" -gt 85 ]; then
-            icon=""
+            icon="%{F#F0C674}%{F-}"
         elif [ "$battery_percent" -gt 75 ]; then
-            icon=""
+            icon="%{F#F0C674}%{F-}"
         elif [ "$battery_percent" -gt 50 ]; then
-            icon=""
+            icon="%{F#F0C674}%{F-}"
         elif [ "$battery_percent" -gt 25 ]; then
-            icon=""
+            icon="%{F#F0C674}%{F-}"
         elif [ "$battery_percent" -gt 10 ]; then
             close_dunstify
             dunstify -C $power_low_dunst
             export power_low_dunst=$(dunstify -i "battery-level-10-symbolic.symbolic" -u normal "Battery Low $battery_percent" -p)
-            icon=""
+            icon="%{F#F0C674}%{F-}"
         else
             close_dunstify
             RETURN=$(dunstify  --action="default,Suspend" --action="ignore,Ingore" -i "battery-level-10-symbolic.symbolic" -u critical "Battery Warning" "<b>Critically Low $battery_percent Suspending in 20 Seconds</b>" -t 20000 -p)
@@ -94,7 +94,7 @@ battery_print() {
             icon=""
         fi
 
-        echo "$icon $battery_percent %"
+        echo "$icon $battery_percent%"
     fi
 }
 
