@@ -75,6 +75,8 @@
     # Set to 0 to disable
     separator_height = 3
 
+    dmenu = /usr/bin/rofi -dmenu -p dunst:
+
     # Padding between text and separator
     padding = 8
 
