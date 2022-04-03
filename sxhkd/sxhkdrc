@@ -19,7 +19,7 @@ super + shift + c
 	pkill -USR1 -x sxhkd; notify-send 'sxhkd' 'Reloaded config'
 
 super + Escape
-	~/.config/polybar/cuts/scripts/powermenu.sh
+	~/.config/polybar/scripts-menus/powermenu.sh
 
 XF86AudioRaiseVolume
 	pactl set-sink-volume @DEFAULT_SINK@ +10%
@@ -32,6 +32,29 @@ XF86AudioMute
 
 XF86AudioMicMute
 	pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+XF86AudioPlay
+	playerctl play-pause; \
+	IFS=$'\n'; \
+	metadata=($(playerctl metadata artist title)); \
+	notify-send -a "${metadata[1]} - ${metadata[0]}" "$(playerctl status)" -i media-playback-start
+	# echo "Now playing: ${metadata[0]} - ${metadata[1]}"
+	# title=$(playerctl metadata --format '{{ title }} - {{ album }} - {{ artist  }}'); \
+
+XF86AudioPause
+	# Not used
+
+XF86AudioNext
+	playerctl next
+
+XF86AudioPrev
+	playerctl previous
+
+XF86AudioStop
+	playerctl stop; \
+	IFS=$'\n'; \
+	metadata=($(playerctl metadata artist title)); \
+	notify-send -a "${metadata[1]} - ${metadata[0]}" "$(playerctl status)" -i media-playback-stop
 
 alt + v
     CM_LAUNCHER=rofi clipmenu \

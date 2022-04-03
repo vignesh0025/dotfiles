@@ -5,8 +5,8 @@ pgrep -x nm-applet > /dev/null || nm-applet &
 pgrep -x pasystray > /dev/null || pasystray &
 pgrep -x blueman-applet > /dev/null || blueman-applet &
 pgrep -x flameshot > /dev/null || flameshot &
-pgrep -x picom > /dev/null || picom --config ~/.config/i3/picom.conf &
 pgrep -x dunst > /dev/null || dunst --config ~/.config/dunst/dunstrc &
+pgrep -x picom > /dev/null || picom --experimental-backends --backend glx --config ~/dotfiles/picom/picom.conf &
 
 feh --bg-fill /home/vignesh/polybar-themes/wallpapers/bg_16.jpg
 $HOME/dotfiles/polybar/launch_new.sh --new

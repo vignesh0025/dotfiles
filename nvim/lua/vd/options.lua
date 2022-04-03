@@ -4,7 +4,7 @@ local global_options = function ()
     end
     vim.opt.listchars             = 'eol:↵,trail:~,tab:▷ ,nbsp:␣,extends:◣,precedes:◢'
     vim.opt.list                  = true
-    vim.opt.colorcolumn           = "96"
+    -- vim.opt.colorcolumn           = 0
     vim.opt.termguicolors         = true
     vim.opt.guifont               = "Droid Sans Mono:h20"
     vim.opt.mouse                 = 'a'
