@@ -8,7 +8,7 @@ pgrep -x flameshot > /dev/null || flameshot &
 pgrep -x dunst > /dev/null || dunst --config ~/.config/dunst/dunstrc &
 pgrep -x picom > /dev/null || picom --experimental-backends --backend glx --config ~/dotfiles/picom/picom.conf &
 
-feh --bg-fill /home/vignesh/polybar-themes/wallpapers/bg_16.jpg
+feh --bg-fill ~/dotfiles/bgnd/real-wood.jpg
 $HOME/dotfiles/polybar/launch_new.sh --new
 
 WS1=Term
