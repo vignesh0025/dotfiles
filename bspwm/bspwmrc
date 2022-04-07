@@ -40,6 +40,8 @@ windowx=$(python -c "print(int($screenwidth)//2-int($windowwidth)//2)")
 windowy=$(python -c "print(int($screenheight)//2-int($windowheight)//2)")
 
 bspc rule -a persepolis state=floating follow=on rectangle="$windowwidth"x"$windowheight"+"$windowx"+"$windowy"
+bspc rule -a mpv state=floating sticky=on follow=off focus=on rectangle="$windowwidth"x"$windowheight"+"$windowx"+"$windowy"
+bspc rule -a "*:Toolkit:Picture-in-Picture" state=floating sticky=on follow=off focus=on rectangle="$windowwidth"x"$windowheight"+"$windowx"+"$windowy"
 bspc rule -a Alacritty desktop='Term'
 bspc rule -a Google-chrome desktop='Web'
 bspc rule -a Vsim desktop='Workspace'
