@@ -164,7 +164,6 @@ return require('packer').startup({function(use)
       vim.cmd[[highlight NvimTreeFolderIcon guibg=blue]]
     end,
     config = function() require'nvim-tree'.setup {
-      highlight_focused_file = true,
       update_focused_file = {
         enable      = true,
         update_cwd  = true,
