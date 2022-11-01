@@ -6,40 +6,31 @@ font:
   size: 12
 
   normal:
-    family: SauceCodePro Nerd Font Mono
+    family: CaskaydiaCove Nerd Font Mono
     style: Regular
     # family: Font Awesome 5 Pro
     # style: Regular
 
   # Bold font face
   bold:
-    family: SauceCodePro Nerd Font Mono
+    family: CaskaydiaCove Nerd Font Mono
     style: Bold
 
   # Italic font face
-  #italic:
-    # Font family
-    #
-    # If the italic family is not specified, it will fall back to the
-    # value specified for the normal font.
-    #family: monospace
-
-    # The `style` can be specified to pick a specific face.
-    #style: Italic
+  italic:
+    family: CaskaydiaCove Nerd Font Mono
+    style: Italic
+    
 
   # Bold italic font face
-  #bold_italic:
-    # Font family
-    #
-    # If the bold italic family is not specified, it will fall back to the
-    # value specified for the normal font.
-    #family: monospace
-
-    # The `style` can be specified to pick a specific face.
-    #style: Bold Italic
+  bold_italic:
+    family: CaskaydiaCove Nerd Font Mono
+    style: Bold Italic
 
   # Bold font face
   #bold:
+  #  family: CaskaydiaCove Nerd Font Mono
+  #  style: Bold
     # Font family
     #
     # If the bold family is not specified, it will fall back to the
@@ -74,9 +65,9 @@ font:
 
 window:
   decorations: full
-  dynamic_title: true
   decorations_theme_variant: dark
-  opacity: 0.7
+  dynamic_title: true
+  opacity: 0.9
 
 live_config_reload: true
 
