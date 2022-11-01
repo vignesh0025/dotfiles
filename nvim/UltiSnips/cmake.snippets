@@ -62,3 +62,11 @@ snippet vd_cmake_head "Description" b
 project($1)
 cmake_minimum_required(VERSION 3.20)
 endsnippet
+
+snippet vd_cmake_print_all_variables "Print all variables" b
+get_cmake_property(_variableNames VARIABLES)
+list (SORT _variableNames)
+foreach (_variableName ${_variableNames})
+	message(STATUS "${_variableName}=${${_variableName}}")
+endforeach()
+endsnippet
