@@ -28,6 +28,18 @@ font pango:SauceCodePro Nerd Font Mono 12
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
 
+# Run only on initial startup for both i3 and polybar
+exec --no-startup-id ~/.config/i3/layout_dual.sh
+#exec --no-startup-id $HOME/.config/polybar/launch_new.sh --new | tee /tmp/poly.log
+
+# When layout is changed, we can restart polybar from the individual script
+bindsym $mod+F1 exec ~/.config/i3/layout_dual.sh
+bindsym $mod+F2 exec ~/.config/i3/dp-0-only.sh
+bindsym $mod+F3 exec ~/.config/i3/hdmi-1-only.sh
+
+# Why its not reconfiguring ?
+exec_always --no-startup-id $HOME/.config/conky/start.sh
+
 # Display Wallpaper, always.
 exec_always feh --bg-fill /home/vignesh/polybar-themes/wallpapers/bg_16.jpg
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
@@ -68,7 +80,6 @@ focus_follows_mouse no
 floating_modifier $mod
 
 # start a terminal
-# bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Return exec alacritty
 bindsym $mod+Shift+Return exec google-chrome-stable
 
@@ -173,15 +184,15 @@ bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
 # Workspace config
-workspace $ws1 output HDMI-0 DP-2.8 eDP-1-1 DP-1-2.8
-workspace $ws2 output HDMI-0 DP-2.8 eDP-1-1 DP-1-2.8
-workspace $ws3 output HDMI-0 DP-2.8 eDP-1-1 DP-1-2.8
-workspace $ws4 output HDMI-0 DP-2.8 eDP-1-1 DP-1-2.8
-workspace $ws5 output HDMI-0 DP-2.8 eDP-1-1 DP-1-2.8
-workspace $ws6 output HDMI-0 DP-2.8 eDP-1-1 DP-1-2.8
-workspace $ws7 output HDMI-0 DP-2.8 eDP-1-1 DP-1-2.8
-workspace $ws8 output HDMI-0 DP-2.8 eDP-1-1 DP-1-2.8
-workspace $ws9 output HDMI-0 DP-2.8 eDP-1-1 DP-1-2.8
+workspace $ws1 output DP-0 HDMI-1
+workspace $ws2 output DP-0 HDMI-1
+workspace $ws3 output DP-0 HDMI-1
+workspace $ws4 output DP-0 HDMI-1
+workspace $ws5 output DP-0 HDMI-1
+workspace $ws6 output HDMI-1 DP-0
+workspace $ws7 output HDMI-1 DP-0
+workspace $ws8 output HDMI-1 DP-0
+workspace $ws9 output HDMI-1 DP-0
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -189,9 +200,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Do you really want to exit i3?' -B 'Yes, exit i3' 'i3-msg exit'"
-bindsym $mod+F1 exec "~/.screenlayout/single.sh"
-bindsym $mod+F2 exec "~/.screenlayout/dual.sh"
-bindsym $mod+F4 exec "~/.screenlayout/offload.sh"
+
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -220,7 +229,7 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-exec_always picom --config ~/.config/i3/picom.conf
+#exec_always picom --experimental-backends --backend glx --config ~/dotfiles/picom/picom.conf &
 
 # border
 default_border pixel
@@ -237,24 +246,6 @@ client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
 
 client.background       #F8F8F2
 
-exec_always --no-startup-id $HOME/.config/polybar/launch_new.sh --new
-exec_always --no-startup-id $HOME/.config/conky/start.sh
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-# bar {
-#         status_command i3status -c ~/.config/i3/i3status
-#         colors {
-#                 background #282A36
-#                         statusline #F8F8F2
-#                         separator  #44475A
-
-#                         focused_workspace  #44475A #44475A #F8F8F2
-#                         active_workspace   #282A36 #44475A #F8F8F2
-#                         inactive_workspace #282A36 #282A36 #BFBFBF
-#                         urgent_workspace   #FF5555 #FF5555 #F8F8F2
-#                         binding_mode       #FF5555 #FF5555 #F8F8F2
-#         }
-# }
 
 assign [class="(?i)Alacritty"] → $ws1
 assign [class="(?i)google-chrome"] → $ws2
@@ -267,7 +258,6 @@ assign [class="(?i)Org.gnome.Nautilus"] → $ws3
 assign [class="(?i)Evince"] → $ws4
 assign [class="(?i)vlc"] → $ws5
 assign [class="(?i)code"] → $ws5
-
 assign [class="(?i)arandr"] → $ws9
 assign [class="(?i)blueman-manager"] → $ws9
 
@@ -287,7 +277,6 @@ gaps outer 3
 
 # Don't wrap around while navigating
 focus_wrapping no
-# exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 # move focused workspace between monitors
 bindsym $mod+Ctrl+greater move workspace to output right
 bindsym $mod+Ctrl+less move workspace to output left
