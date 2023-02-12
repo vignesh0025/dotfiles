@@ -1,0 +1,26 @@
+gui:
+  showIcons: true
+
+os:
+  editCommand: 'nvim'
+  editCommandTemplate: '{{editor}} +{{line}} -- {{filename}}'
+
+customCommands:
+ - key: 't'
+   prompts:
+     - type: 'menu'
+       title: 'Select Option to Show/Hide Untracked files'
+       options:
+         - name: 'Hide'
+           description: 'Hide Hidden File'
+           value: 'no'
+         - name: 'Normal'
+           description: 'Show untracked folder without files'
+           value: 'normal'
+         - name: 'ShowAll'
+           description: 'Show all files and folders untracked'
+           value: 'all'
+   command: "git config status.showUntrackedFiles {{index .PromptResponses 0}}"
+   context: files
+   subprocess: true
+   loadingText: 'Changing configs...'

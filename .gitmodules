@@ -1,0 +1,3 @@
+[submodule "nvimcfg"]
+	path = nvimcfg
+	url = https://github.com/vignesh0025/nvimcfg.git
